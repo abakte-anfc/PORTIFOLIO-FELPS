@@ -56,7 +56,7 @@ export default function App() {
               intro="Cada pasta guarda um pedaço do trabalho. Abra, explore e descubra o que acontece em cada projeto."
             />
           </div>
-          <UniverseSection data={portfolio.universe} />
+          <UniverseSection data={portfolio.universe} years={portfolio.year} pages={pages} />
           <div className="portfolio-container folder-section about-wrapper">
             <AboutSection
               name={portfolio.name}

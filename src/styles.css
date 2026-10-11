@@ -602,6 +602,9 @@ a {
   padding-block: 104px;
   background: #e0e0cd;
 }
+.universe-section .ftp-meta {
+  margin-bottom: 30px;
+}
 .portfolio-site[data-theme="dark"] .universe-section {
   background: #294c5e;
 }

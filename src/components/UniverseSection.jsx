@@ -1,9 +1,11 @@
 import React from "react";
 import { ArrowDown } from "lucide-react";
 import { VideoCard } from "./VideoCard.jsx";
+import { useSection } from "../../portfolio-parts/shared.jsx";
 
 // Grade assimétrica original do KaKa: largo/estreito e estreito/largo.
-export function UniverseSection({ data }) {
+export function UniverseSection({ data, years, pages }) {
+  const { O: renderMeta } = useSection({ id: "work", years, pages });
   return (
     <section
       id="work"
@@ -12,9 +14,9 @@ export function UniverseSection({ data }) {
       data-motion-section
     >
       <div className="portfolio-container">
+        {renderMeta()}
         <div className="section-heading">
           <div data-motion-item>
-            <span className="eyebrow">03 / MEU UNIVERSO</span>
             <h2 id="universe-title">
               {data.title[0]}
               <br />
