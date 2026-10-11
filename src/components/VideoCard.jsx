@@ -42,7 +42,7 @@ export function VideoCard({
             ref={player}
             key={src}
             controls
-            preload="none"
+            preload={video.preload === "auto" ? "auto" : "none"}
             playsInline
             poster={poster || undefined}
             aria-label={video.title}

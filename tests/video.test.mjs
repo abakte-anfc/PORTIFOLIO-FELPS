@@ -4,6 +4,17 @@ import React, { act } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createRoot } from "react-dom/client";
 import { JSDOM } from "jsdom";
+import { portfolio } from "../src/data/portfolio.js";
+
+test("only the first two portfolio videos preload, without autoplay", async () => {
+  const { VideoCard } = await import("../.test-build/VideoCard.js");
+  const videos = [...portfolio.chapters.flatMap(chapter => chapter.videos), ...portfolio.universe.videos];
+  for (const [index, video] of videos.entries()) {
+    const html = renderToStaticMarkup(React.createElement(VideoCard, { video }));
+    assert.ok(html.includes(`preload="${index < 2 ? "auto" : "none"}"`), video.title);
+    assert.ok(!html.toLowerCase().includes("autoplay"));
+  }
+});
 
 test("missing videos render a reserved slot, never a broken player", async () => {
   const module = await import("../.test-build/VideoCard.js").catch(() => null);

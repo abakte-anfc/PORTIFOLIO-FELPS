@@ -38,8 +38,8 @@ export const portfolio = {
       tab: "01 / Seleção",
       points: ["Projetos", "Histórias", "Vídeos"],
       videos: [
-        video("selected-1", "IA", "/videos/ia.mp4"),
-        video("selected-2", "O diferencial está na sua história", "/videos/o-diferencial-esta-na-sua-historia.mp4"),
+        { ...video("selected-1", "IA", "/videos/ia.mp4"), preload: "auto" },
+        { ...video("selected-2", "O diferencial está na sua história", "/videos/o-diferencial-esta-na-sua-historia.mp4"), preload: "auto" },
       ],
     },
     {
