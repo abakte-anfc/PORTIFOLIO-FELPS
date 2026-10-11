@@ -76,6 +76,12 @@ export const portfolio = {
       "Sou Felipe Godinho, editor de vídeo profissional há 6 anos, especialista em transformar ideias em conteúdo dinâmico e envolvente. Domino técnicas criativas para reels e vídeos curtos que prendem a atenção, geram engajamento e comunicam sua mensagem de forma marcante. Meu foco é unir criatividade e estratégia para entregar resultados que se destacam nas redes sociais.",
     photo: "/images/cabeca-padrao.png",
     photoHover: "/images/cabecinha-ain.png",
+    photoLayers: [
+      { src: "/images/pescoco.png", distance: 8, behind: true },
+      { src: "/images/boca.png", distance: 16 },
+      { src: "/images/olho2.png", distance: 24 },
+      { src: "/images/olho.png", distance: 32 },
+    ],
     highlights: [],
     timeline: [],
   },

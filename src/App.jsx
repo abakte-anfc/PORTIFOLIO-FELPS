@@ -80,6 +80,7 @@ export default function App() {
                 )
               }
               photoHover={portfolio.about.photoHover}
+              photoLayers={portfolio.about.photoLayers}
               highlights={portfolio.about.highlights}
               timeline={portfolio.about.timeline}
               contacts={portfolio.contact.links}

@@ -75,10 +75,24 @@ a {
 .portfolio-site .ftp-photo-body { overflow: visible; transform-style: preserve-3d; }
 .portfolio-site .ftp-photo-frame { aspect-ratio: 5 / 7; overflow: hidden; background: #fff; transform: translateZ(0); transition: transform .25s ease, box-shadow .25s ease; }
 .portfolio-site .ftp-photo-frame .about-photo-normal,
+.portfolio-site .ftp-photo-frame .about-photo-layer,
 .portfolio-site .ftp-photo-frame .about-photo-3d { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 51% center; transform: scale(1.9) translateY(5%); transition: opacity .25s ease; }
 .about-photo-3d { opacity: 0; }
+.portfolio-site .ftp-photo[data-layered='true'] .about-photo-normal { z-index: 1; }
 .portfolio-site .ftp-photo[data-3d='true'] .ftp-photo-frame { transform: translateZ(45px); box-shadow: 0 24px 35px -22px #2c556880; }
-.portfolio-site .ftp-photo[data-3d='true'] .about-photo-normal { opacity: 0; }
+.portfolio-site .ftp-photo[data-3d='true']:not([data-layered='true']) .about-photo-normal { opacity: 0; }
+.portfolio-site .ftp-photo-frame .about-photo-layer {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(calc(var(--photo-x, 0) * var(--layer-distance)), calc(var(--photo-y, 0) * var(--layer-distance))) scale(1.9) translateY(5%);
+  transition: transform .3s ease-out, opacity .2s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-site .ftp-photo:hover .about-photo-layer { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-site .ftp-photo-frame .about-photo-layer { transform: scale(1.9) translateY(5%); transition: none; }
+}
 .portfolio-site .ftp-photo[data-3d='true'] .about-photo-3d { opacity: 1; }
 .portfolio-site .ftp-photo[data-3d='true'] .ftp-photo-glass { transform: translateZ(65px); }
 .portfolio-site .ftp-photo-glass { transition: transform .25s ease; }

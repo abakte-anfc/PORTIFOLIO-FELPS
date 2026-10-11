@@ -20,6 +20,7 @@ export function AboutSection({
   years: r = "2026",
   photo: w,
   photoHover,
+  photoLayers = [],
   greeting: A = "Olá, eu sou",
   blurb: y = "Adicione sua apresentação aqui.",
   highlights: u = [],
@@ -38,6 +39,8 @@ export function AboutSection({
   const [Kt, Lt] = useState(Math.max(0, N.length - 1));
   const $ = useRef(null);
   const [is3D, setIs3D] = useState(false);
+  const hasLayers = photoLayers.length > 0;
+  const interactive = Boolean(photoHover || hasLayers);
   const motionAllowed = () => !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const activate = () => { if (motionAllowed()) setIs3D(true); };
   const ee = (event) => {
@@ -48,6 +51,8 @@ export function AboutSection({
       return;
     const bounds = $.current.getBoundingClientRect();
     activate();
+    $.current.style.setProperty("--photo-x", `${(event.clientX - bounds.left) / bounds.width - 0.5}`);
+    $.current.style.setProperty("--photo-y", `${(event.clientY - bounds.top) / bounds.height - 0.5}`);
     $.current.style.setProperty(
       "--ry",
       `${((event.clientX - bounds.left) / bounds.width - 0.5) * 10}deg`,
@@ -61,6 +66,8 @@ export function AboutSection({
     setIs3D(false);
     $.current?.style.setProperty("--ry", "0deg");
     $.current?.style.setProperty("--rx", "0deg");
+    $.current?.style.setProperty("--photo-x", "0");
+    $.current?.style.setProperty("--photo-y", "0");
   };
   return t.jsxs("section", {
     className: "ftp-sheet ftp-rv",
@@ -74,11 +81,12 @@ export function AboutSection({
           t.jsx("div", {
             className: "ftp-photo",
             "data-3d": is3D ? "true" : "false",
-            tabIndex: photoHover ? 0 : undefined,
-            role: photoHover ? "group" : undefined,
-            "aria-label": photoHover ? "Retrato de " + o + ", cartão com efeito 3D" : undefined,
-            onFocus: photoHover ? activate : undefined,
-            onBlur: photoHover ? ae : undefined,
+            "data-layered": hasLayers ? "true" : undefined,
+            tabIndex: interactive ? 0 : undefined,
+            role: interactive ? "group" : undefined,
+            "aria-label": interactive ? "Retrato de " + o + ", cartão com efeito 3D" : undefined,
+            onFocus: interactive ? activate : undefined,
+            onBlur: interactive ? ae : undefined,
             ref: $,
             onPointerMove: ee,
             onPointerLeave: ae,
@@ -95,11 +103,19 @@ export function AboutSection({
                       ? t.jsxs(t.Fragment, { children: [t.jsx("img", {
                           src: w,
                           alt: o,
-                          className: photoHover ? "about-photo-normal" : undefined,
+                          className: interactive ? "about-photo-normal" : undefined,
                           width: 300,
                           height: 360,
                           style: { maxWidth: "none" },
-                        }), photoHover && t.jsx("img", { src: photoHover, alt: "", "aria-hidden": true, className: "about-photo-3d", width: 464, height: 657 })] })
+                        }), !hasLayers && photoHover && t.jsx("img", { src: photoHover, alt: "", "aria-hidden": true, className: "about-photo-3d", width: 464, height: 657 }), ...photoLayers.map((layer, index) => t.jsx("img", {
+                          src: layer.src,
+                          alt: "",
+                          "aria-hidden": true,
+                          className: "about-photo-layer",
+                          width: 3840,
+                          height: 2160,
+                          style: { "--layer-distance": `${layer.distance ?? (index + 1) * 8}px`, zIndex: layer.behind ? 0 : index + 2 },
+                        }, layer.src))] })
                       : (w ?? t.jsx(Me, { name: o, seed: rt(o) })),
                 }),
                 t.jsxs("div", {
