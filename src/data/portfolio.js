@@ -6,7 +6,7 @@ export const palette = { blue: "#2c5568", cream: "#eee8d2" };
 export const pages = [
   { id: "cover", label: "Início" },
   { id: "contents", label: "Projetos" },
-  { id: "work", label: "Nosso universo" },
+  { id: "work", label: "Meu universo" },
   { id: "about", label: "Sobre" },
   { id: "contact", label: "Contato" },
 ];
@@ -90,6 +90,9 @@ export const portfolio = {
     heading: "Fale comigo",
     message:
       "Imagine seus vídeos não só sendo assistidos completamente, mas fortalecendo sua autoridade e posicionando você como referência no seu nicho.\n\nFale comigo agora mesmo e eleve sua autoridade na internet com vídeos que prendem no primeiro segundo.",
-    links: [], // { label: 'Instagram', value: '@seuusuario', href: 'https://...' }
+    links: [
+      { label: "WhatsApp", value: "(75) 98232-7493", href: "https://wa.me/5575982327493" },
+      { label: "Instagram", value: "@felipe.asg", href: "https://www.instagram.com/felipe.asg/" },
+    ],
   },
 };

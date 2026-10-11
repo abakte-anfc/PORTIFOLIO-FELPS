@@ -984,7 +984,7 @@ a {
   }
 }
 
-/* Three videos in Nosso universo: one feature and two supporting cards. */
+/* Three videos in Meu universo: one feature and two supporting cards. */
 .universe-grid:has(> :nth-child(3):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 310px 310px; }
 @media (max-width: 760px) {
   .universe-grid:has(> :nth-child(3):last-child) { grid-template-columns: 1fr; grid-template-rows: repeat(3, 290px); }
@@ -1016,3 +1016,15 @@ a {
 .portfolio-site .ftp-head-title { padding-top: 0; }
 .portfolio-site .ftp-talk h3 { font-size: clamp(25px, 3vw, 40px); color: var(--cream); overflow-wrap: break-word; }
 .portfolio-site .profile-year { font-family: "Martian Mono", monospace; font-weight: 700; font-size: 28px; }
+
+/* Gentle title movement for mouse users who allow motion. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .portfolio-site :is(h1, h2, h3, .ftp-band-t, .ftp-hi) {
+    translate: 0 0;
+    transition: translate 220ms ease-out;
+  }
+
+  .portfolio-site :is(h1, h2, h3, .ftp-band-t, .ftp-hi):hover {
+    translate: 0 -3px;
+  }
+}

@@ -14,7 +14,7 @@ export function UniverseSection({ data }) {
       <div className="portfolio-container">
         <div className="section-heading">
           <div data-motion-item>
-            <span className="eyebrow">02 / NOSSO UNIVERSO</span>
+            <span className="eyebrow">03 / MEU UNIVERSO</span>
             <h2 id="universe-title">
               {data.title[0]}
               <br />

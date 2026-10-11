@@ -24,7 +24,7 @@ try {
     assert.deepEqual(await page.locator(".ftp-link").allTextContents(), [
       "Início",
       "Projetos",
-      "Nosso universo",
+      "Meu universo",
       "Sobre",
       "Contato",
     ]);

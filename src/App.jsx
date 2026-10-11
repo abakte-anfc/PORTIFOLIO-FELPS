@@ -99,7 +99,7 @@ export default function App() {
               contacts={portfolio.contact.links}
               copyLabel="Copiar"
               writeLabel="Escrever"
-              emptyEmailMessage="Informações de contato em breve."
+              emptyEmailMessage="Fale comigo pelo WhatsApp ou Instagram abaixo."
               tabs={["Novas possibilidades", "Contato", "Redes sociais"]}
               pages={pages}
             />
