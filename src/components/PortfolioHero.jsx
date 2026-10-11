@@ -58,9 +58,6 @@ export function PortfolioHero({ data }) {
             ) : (
               <CheckerArtwork />
             )}
-            <span className="artwork-stamp" aria-hidden="true">
-              {data.name.split(/\s+/).slice(0, 2).map(word => word[0]).join('')}
-            </span>
             <span className="artwork-label">UM JEITO PRÓPRIO DE VER.</span>
           </div>
           <div className="visual-footer">
